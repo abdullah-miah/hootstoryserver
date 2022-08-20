@@ -16,6 +16,24 @@ app.get('/user/:id', async(req, res) =>{
     const user = await userCollection.findOne(query);
     res.send(user);
   })
+app.get('/books/:id', async(req, res) =>{
+    const id = req.params.id;
+    const query = {_id: ObjectId(id)};
+    const user = await userCollection.findOne(query);
+    res.send(user);
+  })
+  app.post('/users', async(req, res) =>{
+    const adduser = req.body;
+    const users = await usersCollection.insertOne(adduser);
+    res.send(users)
+});
+app.delete('/deleteUsers/:id', async (req, res)=>{
+    const id = req.params.id;
+    const query = {_id: ObjectId(id)};
+    const result = await userCollection.deleteOne(query);
+    res.send(result);
+
+})
 
 app.get('/', (req, res) => {
     res.send('Hello HootStory!')
