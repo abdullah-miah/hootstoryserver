@@ -16,17 +16,22 @@ app.get('/user/:id', async(req, res) =>{
     const user = await userCollection.findOne(query);
     res.send(user);
   })
+
+//   Get api by user id
 app.get('/books/:id', async(req, res) =>{
     const id = req.params.id;
     const query = {_id: ObjectId(id)};
     const user = await userCollection.findOne(query);
     res.send(user);
-  })
+  });
+//   post api
   app.post('/users', async(req, res) =>{
     const adduser = req.body;
     const users = await usersCollection.insertOne(adduser);
     res.send(users)
 });
+
+// delet api by id
 app.delete('/deleteUsers/:id', async (req, res)=>{
     const id = req.params.id;
     const query = {_id: ObjectId(id)};
